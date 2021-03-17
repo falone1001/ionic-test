@@ -1,0 +1,48 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+  <app-navbar></app-navbar>
+  <h3>Sign Up</h3>
+  <form [formGroup]="signupForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label class="label" position="floating">Full Name</ion-label>
+        <ion-input formControlName="fullName" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errors.fullName">
+        <ng-container *ngIf="fullName.hasError(error.type) && (fullName.dirty || fullName.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errors.email">
+        <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Age</ion-label>
+        <ion-input formControlName="age" inputmode="number"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errors.age">
+        <ng-container *ngIf="age.hasError(error.type) && (age.dirty || age.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errors.password">
+        <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+    </ion-list>
+    <ion-button [disabled]="!signupForm.valid" type="submit" expand="block">Submit</ion-button>
+  </form>
+</ion-content>
